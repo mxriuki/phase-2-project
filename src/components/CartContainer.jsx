@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { motion } from "framer-motion";
 import { RiRefreshFill } from "react-icons/ri";
-
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import EmptyCart from "../img/emptyCart.svg";
@@ -25,14 +24,13 @@ const CartContainer = () => {
       return accumulator + item.qty * item.price;
     }, 0);
     setTot(totalPrice);
-  }, [tot, flag]);
+  }, [cartItems, flag]);
 
   const clearCart = () => {
     dispatch({
       type: actionType.SET_CARTITEMS,
       cartItems: [],
     });
-
     localStorage.setItem("cartItems", JSON.stringify([]));
   };
 
@@ -41,36 +39,35 @@ const CartContainer = () => {
       initial={{ opacity: 0, x: 200 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 200 }}
-      className=" z-50 w-full md:w-375 h-screen bg-white drop-shadow-md flex flex-col fixed top-0 right-0"
+      className="z-50 w-full md:w-375 h-screen bg-gray-900 text-gray-200 drop-shadow-md flex flex-col fixed top-0 right-0"
     >
-      <div className="w-full flex items-center justify-between p-4 cursor-pointer">
+      <div className="w-full flex items-center justify-between p-4 cursor-pointer bg-gray-800">
         <motion.div whileTap={{ scale: 0.75 }} onClick={showCart}>
-          <MdOutlineKeyboardBackspace className="text-textColor text-3xl" />
+          <MdOutlineKeyboardBackspace className="text-gray-200 text-3xl" />
         </motion.div>
-        <p className="text-textColor text-lg font-semibold">Cart</p>
+        <p className="text-gray-200 text-lg font-semibold">Cart</p>
         <motion.p
           whileTap={{ scale: 0.75 }}
-          className="flex items-center gap-2 p-1 px-2 my-2 bg-gray-100 rounded-md hover:shadow-md  cursor-pointer text-textColor text-base"
+          className="flex items-center gap-2 p-1 px-2 my-2 bg-gray-700 rounded-md hover:shadow-md cursor-pointer text-gray-200 text-base"
           onClick={clearCart}
         >
           Clear <RiRefreshFill />
         </motion.p>
       </div>
       {cartItems && cartItems.length > 0 ? (
-        <div className="w-full h-full bg-cartBg rounded-tl-[2rem] flex flex-col ">
+        <div className="w-full h-full bg-gray-800 rounded-tl-[2rem] flex flex-col">
           <div className="w-full h-600 md:h-42 px-6 py-10 flex flex-col gap-3 overflow-y-scroll scrollbar-none">
-            {cartItems &&
-              cartItems.map((caf) => (
-                <CartItem
-                  key={caf.id}
-                  item={caf}
-                  setFlag={setFlag}
-                  flag={flag}
-                />
-              ))}
+            {cartItems.map((item) => (
+              <CartItem
+                key={item.id}
+                item={item}
+                setFlag={setFlag}
+                flag={flag}
+              />
+            ))}
           </div>
           {/* Total Section */}
-          <div className="w-full flex-1 bg-cartTotal rounded-tl-[2rem] flex flex-col items-center justify-evenly px-8 pt-9 pb-20">
+          <div className="w-full flex-1 bg-gray-700 rounded-tl-[2rem] flex flex-col items-center justify-evenly px-8 pt-9 pb-20">
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-400 text-lg">Sub Total</p>
               <p className="text-gray-400 text-lg">$ {tot}</p>
@@ -81,8 +78,8 @@ const CartContainer = () => {
             </div>
             <div className="w-full border-b border-gray-600 my-2"></div>
             <div className="w-full flex items-center justify-between">
-              <p className=" text-gray-200 text-xl font-semibold">Total</p>
-              <p className=" text-gray-200 text-xl font-semibold">
+              <p className="text-gray-200 text-xl font-semibold">Total</p>
+              <p className="text-gray-200 text-xl font-semibold">
                 ${tot + 2.5}
               </p>
             </div>
@@ -109,7 +106,7 @@ const CartContainer = () => {
       ) : (
         <div className="w-full h-full flex flex-col items-center justify-center gap-6">
           <img src={EmptyCart} className="w-300" alt="" />
-          <p className="text-xl text-textColor font-semibold">
+          <p className="text-xl text-gray-200 font-semibold">
             Add some items to your cart
           </p>
         </div>

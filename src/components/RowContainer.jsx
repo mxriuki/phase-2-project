@@ -16,6 +16,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
     });
     localStorage.setItem("cartItems", JSON.stringify([...cartItems, item]));
   };
+
   useEffect(() => {
     rowContainer.current.scrollLeft += scrollValue;
   }, [scrollValue]);
@@ -33,7 +34,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
         data.map((item) => (
           <div
             key={item?.id}
-            className="w-300 min-w-[300px] md:w-340 md:min-w-[340px] h-[225px] bg-cardOverlay rounded-lg my-12 p-2 backdrop-blur-lg hover:drop-shadow-sm flex flex-col items-center justify-between"
+            className="w-300 min-w-[300px] md:w-340 md:min-w-[340px] h-[225px] bg-darkOverlay rounded-lg my-12 p-2 backdrop-blur-lg hover:drop-shadow-lg flex flex-col items-center justify-between"
           >
             <div className="w-full flex items-center justify-between">
               <motion.div
@@ -55,14 +56,14 @@ const RowContainer = ({ flag, data, scrollValue }) => {
               </motion.div>
             </div>
             <div className="w-full flex flex-col items-end justify-end">
-              <p className=" text-textColor font-semibold text-base md:text-lg">
+              <p className="text-gray-200 font-semibold text-base md:text-lg">
                 {item?.title}
               </p>
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-1 text-sm text-gray-400">
                 {item?.calories} Calories
               </p>
               <div className="flex items-center gap-8">
-                <p className="text-lg text-headingColor font-semibold">
+                <p className="text-lg text-orange-500 font-semibold">
                   <span className="text-sm text-red-500">$</span>
                   {item?.price}
                 </p>
@@ -72,10 +73,9 @@ const RowContainer = ({ flag, data, scrollValue }) => {
         ))
       ) : (
         <div className="w-full flex flex-col items-center justify-center ">
-          <img src={notFound} className="h-340" alt="" />
-          <p className="text-xl text-headingColor font-semibold my-5">
-            {" "}
-            There is no items to display{" "}
+          <img src={notFound} className="h-340" alt="Not Found" />
+          <p className="text-xl text-gray-200 font-semibold my-5">
+            There are no items to display
           </p>
         </div>
       )}
