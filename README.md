@@ -49,3 +49,41 @@ npm start
 ## If experiencing any errors after cloning 
 npm install react-router-dom framer-motion react-icons firebase tailwind-scrollbar
 npm start
+
+After setting up the project, you can use the following commands to interact with the application:
+
+- **Start Development Server**: Start the server in development mode to see the app running locally.
+
+```bash
+npm start
+
+## Usage
+
+
+Once the server is running, open your browser and navigate to http://localhost:3000 to view the application. You can browse the menu, add items to your cart, and place orders.
+
+##Folder Structure
+
+
+best-eats/
+├── public/
+│   ├── index.html
+│   └── favicon.ico
+├── src/
+│   ├── components/
+│   │   ├── HomeContainer.js
+│   │   ├── MenuContainer.js
+│   │   ├── CartContainer.js
+│   │   └── RowContainer.js
+│   ├── context/
+│   │   └── CartContext.js
+│   ├── styles/
+│   │   └── tailwind.css
+│   ├── App.js
+│   └── index.js
+└── package.json
+
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for more information.
