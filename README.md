@@ -35,7 +35,7 @@ To get started with the project, follow these steps:
 
 ```bash
 ## Clone the Repository
-git clone https://github.com/your-username/best-eats.git
+git clone
 
 ## Navigate to the Project Directory
 cd best-eats
@@ -44,4 +44,8 @@ cd best-eats
 npm install
 
 # Run the Development Server
+npm start
+
+## If experiencing any errors after cloning 
+npm install react-router-dom framer-motion react-icons firebase tailwind-scrollbar
 npm start
